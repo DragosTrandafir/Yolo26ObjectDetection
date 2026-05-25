@@ -1,7 +1,6 @@
 # 🌸 Flower Object Detection with YOLO — Real vs. Synthetic Data
 
-A computer vision project comparing object detection performance when training on **real data only** versus **real + synthetic data**, applied to a 14-class flower detection task using YOLO.
-
+A computer vision project comparing object detection performance when training on **real data only** versus **real + synthetic data**, applied to a 14-class flower detection task using YOLO. The wandb link for the project is here: https://api.wandb.ai/links/dragostrandafir443-babes/13j27j9a.
 ---
 
 ## 📋 Table of Contents

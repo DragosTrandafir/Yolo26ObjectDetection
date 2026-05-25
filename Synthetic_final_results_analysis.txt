@@ -1,0 +1,57 @@
+Synthetic
+
+Running custom metrics on validation set...
+
+── Custom Val Metrics (mAP@IoU=0.5) ──
+  mAP@0.5   : 0.4255
+  Precision : 0.4215
+  Recall    : 0.5556
+  F1        : 0.4793
+
+Considering these 4 metrics, the model with original data had better mAP and Precision, but this can be explain due to the high dominance of class 12 and 13. These 2 metrics of the synthetic model are not much worse. Considering Recall and F1, the model managed to overall detect more flowers, indicating an ability to generalize more, due to the increased number of samples.
+
+── Per-Class AP ──
+       class_0 [███████████                   ] 0.3907
+       class_1 [███████████████████████       ] 0.7904
+       class_2 [████                          ] 0.1403
+       class_3 [████████                      ] 0.2770
+       class_4 [█████████████████             ] 0.5866
+       class_5 [                              ] 0.0270
+       class_6 [████████████                  ] 0.4186
+       class_7 [█████████                     ] 0.3239
+       class_8 [██████████                    ] 0.3460
+       class_9 [███████                       ] 0.2467
+      class_10 [██████████████████████        ] 0.7496
+      class_11 [█████████████████             ] 0.5939
+      class_12 [████████████████              ] 0.5497
+      class_13 [███████████████               ] 0.5160
+
+The accuracy AP has decreased a bit for some classes, but it is more balanced across the dataset. This is because the model managed to somehow learn equally the difference between the classes, even if the overall performance decreased. This shows that the model has potential to improve if we would let it train further.
+
+── Custom Test Metrics (mAP@IoU=0.5) ──
+  mAP@0.5   : 0.4617
+  Precision : 0.4821
+  Recall    : 0.5975
+  F1        : 0.5336
+
+── Per-Class AP ──
+       class_0 [█████████████                 ] 0.4641
+       class_1 [████████████████████          ] 0.6901
+       class_2 [███████                       ] 0.2648
+       class_3 [████████                      ] 0.2967
+       class_4 [██████████████████            ] 0.6258
+       class_5 [███████                       ] 0.2500
+       class_6 [██████████                    ] 0.3376
+       class_7 [███████████                   ] 0.3758
+       class_8 [█████████                     ] 0.3225
+       class_9 [████████████                  ] 0.4332
+      class_10 [███████████████████           ] 0.6541
+      class_11 [███████████████████           ] 0.6511
+      class_12 [████████████████              ] 0.5450
+      class_13 [████████████████              ] 0.5527
+
+
+A similar thing can be seen also on the test set - a better balance between mAPs, especially for class 0, and we can see also that the original model having only 5 samples for class 5 made it super confident, so not having enough data can sometimes mean being overconfident and actually npt being able to improve further (original model may suffer from this problem of not being able to improve, due to limited data on sume classes).
+
+
+Regarding the wandb curves, we can see that they behave similarly (referring to their evolution). An interesting aspect is that even if the synthetic curves are sometimes below (accuracy or mAP - metrics that need to be maximized), or above (see losses), in most of the cases they are more stable, even for the separate classes logs, showing a more efficient learning evolution and potential for future improvement.
